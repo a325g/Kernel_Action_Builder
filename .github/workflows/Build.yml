@@ -26,22 +26,13 @@ jobs:
 
     - name: Clone toolchains
       run: |
-        mkdir -p toolchain/gcc/linux-x86/aarch64/
-        mkdir -p toolchain/clang/host/linux-x86/
-        cd toolchain/gcc/linux-x86/aarch64/
-        git clone https://android.googlesource.com/platform/prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9 --depth=1
-        cd ../../../clang/host/linux-x86/
-        cd ../../../
-        curl -o clang-r383902.tar.gz https://android.googlesource.com/platform//prebuilts/clang/host/linux-x86/+archive/3857008389202edac32d57008bb8c99d2c957f9d/clang-r383902.tar.gz
-        tar -xzf clang-r383902.tar.gz
-        cd clang-r383902/
-        export PATH=bin:$PATH
-        cd ../../../
+        git clone https://github.com/UniversalX-devs/prebuilts_clang_host_linux-x86_clang-r383902.git
+        export ARCH=arm64
+        export CROSS_COMPILE=clang
+        export PATH=$PATH:prebuilts_clang_host_linux-x86_clang-r383902/bin
         
 
-    - name: Make build script executable
-      run: chmod +x build_kernel.sh
-      
+        
     - name: Clone kernel source
       if: ${{ !startsWith(github.repository, 'YourKernelRepoName') }}
       run: |
@@ -49,7 +40,8 @@ jobs:
         cd kernel  
 
     - name: Build kernel
-      run: ./build_kernel.s
+      run: |
+        make a32x_defconfig
     - name: Upload build output
       if: success()
       uses: actions/upload-artifact@v4
