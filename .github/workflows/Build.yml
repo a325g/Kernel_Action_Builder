@@ -29,7 +29,7 @@ jobs:
         git clone https://github.com/UniversalX-devs/prebuilts_clang_host_linux-x86_clang-r383902.git
         export ARCH=arm64
         export CROSS_COMPILE=clang
-        export PATH=$PATH:prebuilts_clang_host_linux-x86_clang-r383902/bin
+        export PATH=$PATH:$GITHUB_WORKSPACE/prebuilts_clang_host_linux-x86_clang-r383902/bin
         
 
         
