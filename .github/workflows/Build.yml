@@ -37,6 +37,5 @@ jobs:
       with:
         name: kernel-build
         path: |
-          out/
           *.zip
           *.img
