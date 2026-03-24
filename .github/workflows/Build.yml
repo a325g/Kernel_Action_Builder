@@ -31,7 +31,6 @@ jobs:
 
     # --- SSH Debug Step ---
     - name: Setup tmate session
-      if: failure() # This ensures it only runs if a previous step fails
       uses: mxschmitt/action-tmate@v3
       with:
         limit-access-to-actor: false # Recommended: only you can access the session
