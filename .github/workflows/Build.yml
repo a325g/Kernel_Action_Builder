@@ -23,11 +23,7 @@ jobs:
           bc bison build-essential ccache curl flex git gnupg gperf libncurses5-dev \
           libssl-dev libxml2-utils lzop openjdk-11-jdk python3 python3-pip \
           unzip zip zlib1g-dev
-        
-    - name: Clone kernel source and Build
-      if: ${{ !startsWith(github.repository, 'YourKernelRepoName') }}
-      run: |
-        git clone -b master https://github.com/a325g/android_kernel_samsung_a32x.git kernel
+       
 
     # --- SSH Debug Step ---
     - name: Setup tmate session
